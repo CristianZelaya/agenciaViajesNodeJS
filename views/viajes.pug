@@ -1,7 +1,7 @@
 extends ./layouts/index
 
 block contenido
-    h1(class="mt-5 text-center") #{pagina}
+    h1(class="mt-5 text-center")= pagina
     main.container.mt-5
         .row.proximos-viajes
             each viaje in viajes
@@ -18,7 +18,7 @@ block contenido
                                     line(x1='8' y1='3' x2='8' y2='7')
                                     line(x1='4' y1='11' x2='20' y2='11')
                                     rect(x='8' y='15' width='2' height='2')
-                                | #{viaje.fechaIda} - #{viaje.fechaVuelta}`
+                                | #{viaje.fechaIda} / #{viaje.fechaVuelta}
 
                             p 
                                 svg.icon.icon-tabler.icon-tabler-users(xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewbox='0 0 24 24' stroke-width='1.5' stroke='#cd135f' fill='none' stroke-linecap='round' stroke-linejoin='round')
@@ -29,6 +29,6 @@ block contenido
                                     path(d='M21 21v-2a4 4 0 0 0 -3 -3.85')
                                 | #{viaje.disponible} Disponibles
                             
-                            p= viaje.descripcion
+                            p= viaje.descripcion.substr(0, 75) + '...'
 
                             a(href=`viajes/${viaje.slug}`, class='btn btn-success btn-block') Más Información
