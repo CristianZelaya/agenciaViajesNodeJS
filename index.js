@@ -13,8 +13,9 @@ db.authenticate()
     .then( () => console.log('Base de datos conectada'))
     .catch( error => console.log(error));
 
-// Definir puerto
+// Definir puerto y host
 const port = process.env.PORT || 4000;
+const host = process.env.HOST || '0.0.0.0';
 
 // Habilitar pug
 app.set('view engine', 'pug');
@@ -30,12 +31,15 @@ app.use( ( req, res, next ) => {
 
 });
 
+// Agregar body parser para leer los datos del formulario
+app.use(express.urlencoded({extended: true}));
+
 // Definir la carpeta public
 app.use(express.static('public'));
 
 // Agregar Router
 app.use('/', router);
 
-app.listen(port, () => {
+app.listen(port, host, () => {
     console.log(`El servidor esta funcionando en el puerto ${port}`);
 });
