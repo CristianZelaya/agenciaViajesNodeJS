@@ -6,7 +6,7 @@ const paginaInicio = async ( req, res ) => {
     const promiseDB = [];
 
     promiseDB.push(Viaje.findAll({limit: 3}));
-    promiseDB.push(Testimonial.findAll({order: [['id', 'DESC']], limit: 3}));
+    promiseDB.push(Testimonial.findAll());
 
     // Consultar 3 viajes de db modelo Viaje
     try {
